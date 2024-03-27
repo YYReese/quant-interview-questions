@@ -11,40 +11,26 @@
 
 \maketitle
 
-\section{Linear regression}
-Assumptions: 
+
+
+\section{Combinatorics}
 \begin{enumerate}
-    \item Normality 
-    \item Linearity
-    \item Homoscedasticity 
-    \item Independence 
-    \item No multicollinearity
+    \item  $25$ people in a room and shake hands with each other. How many number of handshakes? 
+    $$n*(n-1)/2 = 25*24/2$$ \\
+    \item Eight quants from different banks are getting together for drinks. They are all interested in knowing the average salary of the group. Nevertheless, being cautious and humble individuals, everyone prefers not to disclose his or her own salary to the group. Can you come up with a strategy for the quants to calculate the average salary without knowing other people's salaries?
+
+    First person generates a random big seed number and adds their own number to it. Pass this number amongst all N participants who add their numbers to the sum. In the end, the first person subtracts the seed number from the sum. Divide the new sum by N.
+
+    \item We randomly select 3 numbers from the set of the first 9 prime numbers, without replacement. What is the probability the sum of those numbers is even? And why?
+
+    $\frac{_8C_2}{_9C_3} = 1/3$
 \end{enumerate}
 
-
-\section{Probability}
-
-Two gamblers are playing a coin toss game. Gambler A has 6 coins with $P(H)=2/3$; B has 12 coins $P(H)=1/3$. What is the probability that $A$ will have more heads than B if both flip all their coins?
-
-Ans: 
-
-Let $AH$ denote the number of heads that A has. $P(AH>BH)=P(6>AT+BH)$. 
-$AT+BH\sim Bin(18,1/3)$, where we use the result that two independent binomial random variables with the same success probability is also a Binomial r.v.
-
-Suppose $X \sim Bin(n, p), Y \sim Bin(m, p)$. Now let $0 \leq k \leq n+m$, then by independence $X+Y \sim Bin(n+m, p)$.
-
-\section{Jane street}
-
+\section{Card games}
 \begin{enumerate}
-    \item $25$ people in a room and shake hands with each other. How many number of handshakes? 
-    $$n*(n-1)/2 = 25*24/2$$ \\
-
-    \item If Worker A takes 1 hour to finish a job and Worker B takes 2 hours to finish a job. How long would it take them both to finish a job.
-    $$1/(1/1 + 1/2) = 2/3 h$$
-
     \item There are $52$ cards, black and red, each colour with $26$ cards. Now you are taking cards indefinitely, for each red card you lose $1$ point, for each black card you gain $1$ point. To maximise your total points, what's your strategy?
-
-    Let $r$ and $b$ denote the remaining number of red and black cards respectively. At $(r,b)$ step, the expected payoff is 
+    
+        Let $r$ and $b$ denote the remaining number of red and black cards respectively. At $(r,b)$ step, the expected payoff is 
     $$v(r,b) = \begin{cases}
         0, & b=0 \\
         b, & r=0 \\
@@ -52,24 +38,27 @@ Suppose $X \sim Bin(n, p), Y \sim Bin(m, p)$. Now let $0 \leq k \leq n+m$, then 
     \end{cases},$$
     where $f(v,b) = \frac{b}{b+r}\cdot (v(r,b-1)+1) + \frac{r}{b+r}\cdot (v(r-1,b)-1)$. The stopping rule is when $v(r,b) = 0$
 
-    \item Eight quants from different banks are getting together for drinks. They are all interested in knowing the average salary of the group. Nevertheless, being cautious and humble individuals, everyone prefers not to disclose his or her own salary to the group. Can you come up with a strategy for the quants to calculate the average salary without knowing other people's salaries?
 
-    First person generates a random big seed number and adds their own number to it. Pass this number amongst all N participants who add their numbers to the sum. In the end, the first person subtracts the seed number from the sum. Divide the new sum by N.
+    \item (a) You have a standard deck of 52 cards. I draw a card and tell you I drew hearts. Now you draw a card from the cards that are remaining. What is the probability that you will also draw a heart? ($12/51 = 4/17$)
+    
+    Again, you have a standard deck of 52 cards. I draw 13 cards and tell you I drew exactly 5 hearts. Now you draw 13 cards from the cards that are remaining. What is the expected number of hearts you will draw?
 
-    \item What is the smallest number whose digits multiply into 216. What about 10,000?
+     There are 8 hearts in 39 cards now. E(hearts)=(8/39)*13=8/3 , comes from the Expected Value formula of hypergeometric distribution. 
+\end{enumerate}
 
-    216
+\section{Coin tosses}
+\begin{enumerate}
+     \item Expectation value of the sum of 8 flipping coins. Head=1, Tail=0. 
 
+     Bin(8,1/2) . expectation = 4 \\
     \item Calculate the probability of getting 3 heads after 4 coin flips. What is the probability of getting an odd number of heads for 4 flips? What about for 9? What about for N flips?
 
 
     N odd - P(odd heads)=P(even heads)=1/2, N even - condition on first throw to get 1/2*1/2 + 1/2*1/2 = 1/2 as well
 
-    \item What is the next date whose digits are all unique?
-
-    17/06/2345 is the soonest such date.
-
-    \item (a) Getting HTH and HHT are equiprobable after 3 coin flips. But if I keep flipping a coin, I'm more likely to get one of these combinations than the other. Why is that?
+    
+    \item \textbf{Trick of Markov Chain}\\
+    (a) Getting HTH and HHT are equiprobable after 3 coin flips. But if I keep flipping a coin, I'm more likely to get one of these combinations than the other. Why is that?
 
     Assume HTH appears in the last three flips. Consider the previous flip. It can only be T, because if the previous flip is H, then the pattern is HHTH which shows HHT before HTH. 
 
@@ -78,9 +67,71 @@ Suppose $X \sim Bin(n, p), Y \sim Bin(m, p)$. Now let $0 \leq k \leq n+m$, then 
     Therefore, HHT is more likely to apprear first. 
 
     (b) We toss coin until either the sequence of HHT appears, or HTH. What is probability that HHT appears first? How about unfair coin with probability p?
-    
 
-    
+    \item \textbf{Trick of Markov Chain} How many expected coin tosses before you get 5 heads in a row?
+
+    Use success run.
+
+    \item If you get a dollar for every head you roll in a coin flip, what is the expected amount you'll make with 4 flips?
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|c}
+            \hline
+            0 & $(1/2)^4$ \\
+            \hline
+            1 & $_4C_1*(1/2)^4$  \\
+            \hline
+            2 & $_4C_2*(1/2)^4$ \\
+            \hline
+            3 & $_4C_3*(1/2)^4$ \\
+            \hline
+            4 & $_4C_4*(1/2)^4$ \\
+            \hline 
+        \end{tabular}
+        \label{tab:my_label}
+    \end{table}
+    Hence, the expected payoff is 1*4/16+2*6/16+3*4/16+4*1/16 = 2.
+
+    Or equivalently: Since every flip is independent of the last you have a 0.5 chance every time of getting a head, so 4*(0.5) = 2. \\
+    Two gamblers are playing a coin toss game. Gambler A has 6 coins with $P(H)=2/3$; B has 12 coins $P(H)=1/3$. What is the probability that $A$ will have more heads than B if both flip all their coins?
+
+
+Let $AH$ denote the number of heads that A has. $P(AH>BH)=P(6>AT+BH)$. 
+$AT+BH\sim Bin(18,1/3)$, where we use the result that two independent binomial random variables with the same success probability is also a Binomial r.v.
+
+Suppose $X \sim Bin(n, p), Y \sim Bin(m, p)$. Now let $0 \leq k \leq n+m$, then by independence $X+Y \sim Bin(n+m, p)$.
+
+    \item How many tosses do you need to ensure 4 tails with a probability of 0.7?
+
+    $P(\geq 4 Ts)\geq0.7$
+    $P(\#Ts=0, 1,2,3) \leq 0.3 $
+    \begin{align*}
+        P(\#Ts=0, 1,2,3) &= \left(1+n+\frac{n(n-1)}{2}+\frac{n(n-1)(n-2)}{3\cdot 2}\right)\cdot(1/2)^n \\
+        &=\left(\frac{n^3}{6} +\frac{5n}{6}+1\right)\cdot (1/2)^n \leq 0.3
+    \end{align*}
+
+         \item If I flip 100 coins and then multiply the number of heads by the number of tails, what is the expected value of that number? Can you give a confidence interval on this number?
+
+     Let X be the number of heads. $X\sim Bin(100, 1/2)$. $E[X]=100*1/2=50 $ and $Var[X] = 100*1/2*1/2 = 25$. $E[X^2] = Var[X]+E[X]^2 = 2525$
+
+     \begin{align*}
+         E[X(100-X)] &= E[100X-X^2] = 100E[X]-E[X^2] \\
+         &= 5000-2525 = 2475.
+     \end{align*}
+
+     \begin{align*}
+         Var(X(1-X)) &= Var(X-X^2) = Var(X)-Var(X^2) \\ 
+         &= 25- E[(X^2-E[X^2])^2] \\
+         &= 25 - E[(X^2-75)^2] \\ 
+     \end{align*}
+
+
+\end{enumerate}
+
+
+\section{Dice problems}
+\begin{enumerate}
 
     \item Two symmetric dice have both had two of their sides painted red, two painted black, one painted yellow, and the other painted white. When this pair of dice is rolled, what is the probability that both dice land with the same color face up?
 
@@ -120,6 +171,15 @@ Suppose $X \sim Bin(n, p), Y \sim Bin(m, p)$. Now let $0 \leq k \leq n+m$, then 
     \end{table}
     Therefore, the expected payoff is 15/36 = 5/12.
 
+
+        \item A asymmetrical dice with 12 faces, 40\% to be 12, others are equivalent. two people, choose a number. The man whose number is closer to the result will win. which number should you choose.
+
+    The number m that minimise $E[|X-m|] $ is the median. The number $\mu$ that minimise $E[(X-\mu)^2]$ is the mean. 
+\end{enumerate}
+
+
+\section{Conditional probabilities}
+\begin{enumerate}
     \item The probability of raining on Saturday is 30\%, probability of raining on Sunday is 40\%
  
  (a) What is the probability of raining on weekend?
@@ -145,89 +205,9 @@ Suppose $X \sim Bin(n, p), Y \sim Bin(m, p)$. Now let $0 \leq k \leq n+m$, then 
      &= 0.91-0.2245\rho_{AB} \in (0.4,0.7).
  \end{align*}
 
-    \item If you get a dollar for every head you roll in a coin flip, what is the expected amount you'll make with 4 flips?
-
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{c|c}
-            \hline
-            0 & $(1/2)^4$ \\
-            \hline
-            1 & $_4C_1*(1/2)^4$  \\
-            \hline
-            2 & $_4C_2*(1/2)^4$ \\
-            \hline
-            3 & $_4C_3*(1/2)^4$ \\
-            \hline
-            4 & $_4C_4*(1/2)^4$ \\
-            \hline 
-        \end{tabular}
-        \label{tab:my_label}
-    \end{table}
-    Hence, the expected payoff is 1*4/16+2*6/16+3*4/16+4*1/16 = 2.
-
-    Or equivalently: Since every flip is independent of the last you have a 0.5 chance every time of getting a head, so 4*(0.5) = 2.
-
-    \item If you have x amount of coins, in how many stacks and how many coins per stack would you put in order to maximize the product between the stacks.
-
-    \item If you have a machine that rolls you \$1-100, and you can spend \$1 to re-roll until you get a satisfied result, what will your strategy be?
-
-    \item If you have 5 digits what is the largest number you can create whilst keeping the product 120, can you make it arbitrary large if we remove the restriction on number of digits?
-
-    \item How many expected coin tosses before you get 5 heads in a row?
-
-    success run.
-
-    \item Throw a 30-sided dice, re-roll if you don't like the result. How do you maximize the expected value?
-
-    \item Person A has a 20-sided dice and person B has three 6-sided dice. They both roll their dice and whoever gets a bigger number/sum of numbers wins the game. Is it a fair game? Same game with one more player C who has a 20-sided dice. Is this new game fair? (all dice are fair; a 20-sided dice has number 1,2,…, 20 on each of its 20 sides)
-
-    \item Person A and B are going to play a coin toss game. There is an initial score 0, and whenever a head/tail appears, the score +1/-1. Repeating the coin toss until one wins, that is, when the score reaches +2/-2, A/B wins the game. There is also an initial stake \$1 for the game and person A has the option to double the stake every time before a coin toss. When one person wins the game, the other player needs to pay the amount of dollars on the stake to the winner. The question is: if you are person A, what is your strategy and what is your highest expected payoff of the game?
-
-    \item What is the probability of an even number of heads when flipping n coins?
-
-    \item We randomly select 3 numbers from the set of the first 9 prime numbers, without replacement. What is the probability the sum of those numbers is even? And why?
-
-    $\frac{_8C_2}{_9C_3} = 1/3$
-
-    \item What is the smallest number whose digits multiply to be 10,000.
     
-    $10000 = 100*100=2*2*2*2*5*5*5*5$. Therefore, 255558.
-
-    \item How many tosses do you need to ensure 4 tails with a probability of 0.7?
-
-    $P(\geq 4 Ts)\geq0.7$
-    $P(\#Ts=0, 1,2,3) \leq 0.3 $
-    \begin{align*}
-        P(\#Ts=0, 1,2,3) &= \left(1+n+\frac{n(n-1)}{2}+\frac{n(n-1)(n-2)}{3\cdot 2}\right)\cdot(1/2)^n \\
-        &=\left(\frac{n^3}{6} +\frac{5n}{6}+1\right)\cdot (1/2)^n \leq 0.3
-    \end{align*}
     
-     \item You have a drawer with an infinite number of two colors of socks, which exist in equal probability. What is the expected number of attempts at taking out socks individually from the drawer before a matching pair is found?
-
-     Assume first draw is R WLOG. The second draw is of 0.5 chance being R and of 0.5 being B. So, E = 0.5*2+0.5*3 = 2.5. 
-
-     \item If I flip 100 coins and then multiply the number of heads by the number of tails, what is the expected value of that number? Can you give a confidence interval on this number?
-
-     Let X be the number of heads. $X\sim Bin(100, 1/2)$. $E[X]=100*1/2=50 $ and $Var[X] = 100*1/2*1/2 = 25$. $E[X^2] = Var[X]+E[X]^2 = 2525$
-
-     \begin{align*}
-         E[X(100-X)] &= E[100X-X^2] = 100E[X]-E[X^2] \\
-         &= 5000-2525 = 2475.
-     \end{align*}
-
-     \begin{align*}
-         Var(X(1-X)) &= Var(X-X^2) = Var(X)-Var(X^2) \\ 
-         &= 25- E[(X^2-E[X^2])^2] \\
-         &= 25 - E[(X^2-75)^2] \\ 
-     \end{align*}
-
-     \item I play a game where I start with a score of 100. I then flip 10 coins in a row. Every time I get a head I add 1 to my score. When I get a tails I take the reciprocal of my score. If you are running this game, and people are given their score in pounds at the end of the game, how much would you charge people to play?
-
-
-     \item Google the game 'Shut the box'. He asked me to figure out the average score someone has at the end of the game if they play the 'optimal' strategy. After getting this number, he wanted to know how this would change if instead of playing the optimal strat, they made random moves. Super open ended problem.
-
-     \item a) The odds of having pizza on a Saturday are 60\%, on Sunday, 30\%. What are the odds of having pizza at least once during the weekend? 
+    \item a) The odds of having pizza on a Saturday are 60\%, on Sunday, 30\%. What are the odds of having pizza at least once during the weekend? 
 
      P(weekend) = P(sat)+P(sun)-P(sat and sun) = 3/8+3/13 - 3/8*3/13 = 54/104 = 27/52. Odds = 27/(52-27) = 27/25.
  
@@ -239,34 +219,75 @@ Suppose $X \sim Bin(n, p), Y \sim Bin(m, p)$. Now let $0 \leq k \leq n+m$, then 
 
     $P = P(sat) + P(sun) - P(sun)P(sat|sun) = 3/8+3/13-3/13 = 8/13$
 
-    \item You have all the clubs from a deck, 13 cards, and you can choose 2 from the deck and get paid their product, where all face cards are considered to be 0. You can pay \$1 to reveal the difference of any two cards you choose, how much would you pay to play this game?
+     \item You have a drawer with an infinite number of two colors of socks, which exist in equal probability. What is the expected number of attempts at taking out socks individually from the drawer before a matching pair is found?
 
-    \item There are an unknown amount of people on a bus. After the first stop, three-quarters of them get off and 7 get on. This happens again a two more stops. After this process, what is the minimum amount of possible people that could be on the bus?
+     Assume first draw is R WLOG. The second draw is of 0.5 chance being R and of 0.5 being B. So, E = 0.5*2+0.5*3 = 2.5. 
 
-    \item A asymmetrical dice with 12 faces, 40\% to be 12, others are equivalent. two people, choose a number. The man whose number is closer to the result will win. which number should you choose.
-
-    The number m that minimise $E[|X-m|] $ is the median. The number $\mu$ that minimise $E[(X-\mu)^2]$ is the mean. 
-
-
-    \item (a) You have a standard deck of 52 cards. I draw a card and tell you I drew hearts. Now you draw a card from the cards that are remaining. What is the probability that you will also draw a heart? ($12/51 = 4/17$)
     
-    Again, you have a standard deck of 52 cards. I draw 13 cards and tell you I drew exactly 5 hearts. Now you draw 13 cards from the cards that are remaining. What is the expected number of hearts you will draw?
+\end{enumerate}
+\section{Mathematical brain teasers}
+\begin{enumerate}
 
-     There are 8 hearts in 39 cards now. E(hearts)=(8/39)*13=8/3 , comes from the Expected Value formula of hypergeometric distribution. 
+    \item If Worker A takes 1 hour to finish a job and Worker B takes 2 hours to finish a job. How long would it take them both to finish a job.
+    $$1/(1/1 + 1/2) = 2/3 h$$
 
-     \item Expectation value of the sum of 8 flipping coins. Head=1, Tail=0. 
 
-     Bin(8,1/2) . expectation = 4
+    \item What is the smallest number whose digits multiply into 216. What about 10,000?
+
+    216
+
+
+    \item What is the next date whose digits are all unique?
+
+    17/06/2345 is the soonest such date.
+
+    \item What is the smallest number whose digits multiply to be 10,000.
+    
+    $10000 = 100*100=2*2*2*2*5*5*5*5$. Therefore, 255558.
 
     \item What is the minimum number of people you need to put in a room so that at least five of them share a birth month?
 
     49. peageon hole problem.
 
-    \item Devise a strategy of betting on a seven-game series such that if team 1 wins the series you win \$1000 no matter what and if team 1 loses, you lose \$1000.
-
     \item how many 4-digit numbers can you make with digits 1,2,3,4 (with or without repeating digits) and what is their average ?
 
     4! in the without repeating case and $4^4$ in the repeating case - digits will be equally distributed so [1,2,3,4] ave is 2.5 so the average 4 digit number is 2500 + 250 + 25 +2.5 = 2777.5
+
+\end{enumerate}
+
+\section{Ongoing}
+
+\begin{enumerate}
+
+    \item If you have x amount of coins, in how many stacks and how many coins per stack would you put in order to maximize the product between the stacks.
+
+    \item If you have a machine that rolls you \$1-100, and you can spend \$1 to re-roll until you get a satisfied result, what will your strategy be? 
+
+    \item If you have 5 digits what is the largest number you can create whilst keeping the product 120, can you make it arbitrary large if we remove the restriction on number of digits?
+
+
+
+    \item Throw a 30-sided dice, re-roll if you don't like the result. How do you maximize the expected value?
+
+    \item Person A has a 20-sided dice and person B has three 6-sided dice. They both roll their dice and whoever gets a bigger number/sum of numbers wins the game. Is it a fair game? Same game with one more player C who has a 20-sided dice. Is this new game fair? (all dice are fair; a 20-sided dice has number 1,2,…, 20 on each of its 20 sides)
+
+    \item Person A and B are going to play a coin toss game. There is an initial score 0, and whenever a head/tail appears, the score +1/-1. Repeating the coin toss until one wins, that is, when the score reaches +2/-2, A/B wins the game. There is also an initial stake \$1 for the game and person A has the option to double the stake every time before a coin toss. When one person wins the game, the other player needs to pay the amount of dollars on the stake to the winner. The question is: if you are person A, what is your strategy and what is your highest expected payoff of the game?
+
+    \item What is the probability of an even number of heads when flipping n coins?
+
+
+     \item I play a game where I start with a score of 100. I then flip 10 coins in a row. Every time I get a head I add 1 to my score. When I get a tails I take the reciprocal of my score. If you are running this game, and people are given their score in pounds at the end of the game, how much would you charge people to play?
+
+
+     \item Google the game 'Shut the box'. He asked me to figure out the average score someone has at the end of the game if they play the 'optimal' strategy. After getting this number, he wanted to know how this would change if instead of playing the optimal strat, they made random moves. Super open ended problem.
+
+
+    \item You have all the clubs from a deck, 13 cards, and you can choose 2 from the deck and get paid their product, where all face cards are considered to be 0. You can pay \$1 to reveal the difference of any two cards you choose, how much would you pay to play this game?
+
+    \item There are an unknown amount of people on a bus. After the first stop, three-quarters of them get off and 7 get on. This happens again a two more stops. After this process, what is the minimum amount of possible people that could be on the bus?
+
+    \item Devise a strategy of betting on a seven-game series such that if team 1 wins the series you win \$1000 no matter what and if team 1 loses, you lose \$1000.
+
 
     \item Given a fair die 1-6, what would be the expected value of the result? What if you have two chances? After the first row, you can choose whether or not you want to keep it. What would be the maximum expected value based on the best strategy.
 
@@ -284,10 +305,10 @@ Suppose $X \sim Bin(n, p), Y \sim Bin(m, p)$. Now let $0 \leq k \leq n+m$, then 
     
     
 
-     
+\end{enumerate}
 
     
-\end{enumerate}
+
 
 
 \end{document}
